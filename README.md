@@ -7,7 +7,7 @@ Doctor Hub is a full-stack healthcare appointment platform for patients, doctors
 - Frontend: React, Vite, React Router, Axios, Lucide React
 - Backend: Node.js, Express, JWT authentication, Supabase
 - Database/storage: Supabase
-- File uploads: Multer, served from `backend/uploads`
+- File uploads: Multer memory uploads stored in Supabase Storage
 
 ## Project Structure
 
@@ -63,6 +63,7 @@ JWT_SECRET=your_jwt_secret
 SUPABASE_URL=your_supabase_url
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_STORAGE_BUCKET=doctor-hub-uploads
 ```
 
 The frontend uses this optional variable:
@@ -102,6 +103,20 @@ Then seed demo users:
 cd backend
 npm run seed
 ```
+
+## Supabase Storage Setup
+
+Vercel Serverless Functions cannot persist files inside `backend/uploads`. Payment screenshots and medical reports are uploaded to Supabase Storage instead.
+
+Create a public Supabase Storage bucket:
+
+```sql
+insert into storage.buckets (id, name, public)
+values ('doctor-hub-uploads', 'doctor-hub-uploads', true)
+on conflict (id) do update set public = true;
+```
+
+If you use a different bucket name, set `SUPABASE_STORAGE_BUCKET` in the backend environment variables.
 
 ## Run The App
 

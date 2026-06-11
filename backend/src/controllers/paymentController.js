@@ -1,5 +1,3 @@
-const path = require('path');
-const fs = require('fs');
 const multer = require('multer');
 const PaymentModel = require('../models/Payment');
 const AppointmentModel = require('../models/Appointment');
@@ -9,22 +7,19 @@ const AssistantModel = require('../models/Assistant');
 const DoctorModel = require('../models/Doctor');
 const UserModel = require('../models/User');
 const { success, error } = require('../utils/responseHandler');
-
-const UPLOAD_DIR = path.join(__dirname, '../../uploads/payments');
-if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, UPLOAD_DIR),
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
-});
+const { uploadFile } = require('../services/storageService');
 
 const fileFilter = (req, file, cb) => {
   const allowed = ['image/jpeg', 'image/png', 'application/pdf'];
   if (allowed.includes(file.mimetype)) cb(null, true);
-  else cb(new Error('Unsupported file type'), false);
+  else {
+    const err = new Error('Unsupported file type');
+    err.status = 422;
+    cb(err, false);
+  }
 };
 
-const upload = multer({ storage, fileFilter, limits: { fileSize: 5 * 1024 * 1024 } });
+const upload = multer({ storage: multer.memoryStorage(), fileFilter, limits: { fileSize: 5 * 1024 * 1024 } });
 
 const getActorDoctorId = async (user) => {
   if (user.role === 'doctor') {
@@ -48,10 +43,11 @@ const uploadPayment = async (req, res) => {
     if (appt.patient_id !== patient.id) return error(res, 'Insufficient permissions', 403);
     const existing = await PaymentModel.findByAppointmentId(appointment_id);
     if (existing) return error(res, 'Payment already uploaded for this appointment', 409);
+    const uploaded = await uploadFile(req.file, 'payments');
     const payment = await PaymentModel.create({
       appointment_id,
       patient_id: patient.id,
-      file_path: `/uploads/payments/${req.file.filename}`,
+      file_path: uploaded.publicUrl,
       file_type: req.file.mimetype
     });
     return success(res, payment, 'Payment uploaded', 201);

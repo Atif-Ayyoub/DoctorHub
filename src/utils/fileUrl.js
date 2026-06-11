@@ -1,4 +1,4 @@
-const API_ORIGIN = 'http://localhost:5000';
+const API_ORIGIN = import.meta.env.VITE_API_ORIGIN || (import.meta.env.PROD ? '' : 'http://localhost:5000');
 
 export function fileUrl(filePath) {
   if (!filePath) return '#';

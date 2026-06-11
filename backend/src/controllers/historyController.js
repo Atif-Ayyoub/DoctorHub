@@ -3,22 +3,17 @@ const PatientModel = require('../models/Patient');
 const AppointmentModel = require('../models/Appointment');
 const DoctorModel = require('../models/Doctor');
 const { success, error } = require('../utils/responseHandler');
+const { uploadFile } = require('../services/storageService');
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 
-const UPLOAD_DIR = path.join(__dirname, '../../uploads/reports');
-if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, UPLOAD_DIR),
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`)
-});
 const fileFilter = (req, file, cb) => {
   const allowed = ['image/jpeg', 'image/png', 'application/pdf'];
-  allowed.includes(file.mimetype) ? cb(null, true) : cb(new Error('Unsupported file type'), false);
+  if (allowed.includes(file.mimetype)) return cb(null, true);
+  const err = new Error('Unsupported file type');
+  err.status = 422;
+  return cb(err, false);
 };
-const upload = multer({ storage, fileFilter, limits: { fileSize: 10 * 1024 * 1024 } });
+const upload = multer({ storage: multer.memoryStorage(), fileFilter, limits: { fileSize: 10 * 1024 * 1024 } });
 
 const getMyHistory = async (req, res) => {
   const patient = await PatientModel.findByUserId(req.user.id);
@@ -52,18 +47,24 @@ const addHistoryRecord = async (req, res) => {
 };
 
 const uploadReport = async (req, res) => {
-  const patient = await PatientModel.findByUserId(req.user.id);
-  if (!patient) return error(res, 'Patient not found', 404);
-  if (!req.file) return error(res, 'Report file is required', 422);
-  const { title } = req.body;
-  const record = await MedicalHistoryModel.create({
-    patient_id: patient.id,
-    doctor_id: null,
-    record_type: 'report',
-    title: title || req.file.originalname,
-    file_path: req.file.path
-  });
-  return success(res, record, 'Report uploaded', 201);
+  try {
+    const patient = await PatientModel.findByUserId(req.user.id);
+    if (!patient) return error(res, 'Patient not found', 404);
+    if (!req.file) return error(res, 'Report file is required', 422);
+    const { title } = req.body;
+    const uploaded = await uploadFile(req.file, 'reports');
+    const record = await MedicalHistoryModel.create({
+      patient_id: patient.id,
+      doctor_id: null,
+      record_type: 'report',
+      title: title || req.file.originalname,
+      file_path: uploaded.publicUrl
+    });
+    return success(res, record, 'Report uploaded', 201);
+  } catch (e) {
+    console.error(e);
+    return error(res, e.status === 422 ? e.message : 'Report upload failed', e.status || 500);
+  }
 };
 
 module.exports = { upload, getMyHistory, getPatientHistory, addHistoryRecord, uploadReport };

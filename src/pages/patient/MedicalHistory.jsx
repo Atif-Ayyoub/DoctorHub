@@ -3,6 +3,7 @@ import API from '../../api/axios';
 import Sidebar from '../../components/common/Sidebar';
 import toast from 'react-hot-toast';
 import { FileText, Upload, Calendar, Pill, Search, MessageSquare } from 'lucide-react';
+import { fileUrl } from '../../utils/fileUrl';
 
 const sidebarLinks = [
   { to: '/patient', icon: Calendar, label: 'Dashboard' },
@@ -78,7 +79,7 @@ export default function MedicalHistory() {
                     <h4>{h.title}</h4>
                     {h.doctor_name && <p>By Dr. {h.doctor_name}</p>}
                     {h.content && <p className="history-content">{h.content}</p>}
-                    {h.file_path && <a href={`http://localhost:5000/${h.file_path.replace(/\\/g,'/')}`} target="_blank" rel="noreferrer" className="btn-outline btn-xs">📄 View File</a>}
+                    {h.file_path && <a href={fileUrl(h.file_path)} target="_blank" rel="noreferrer" className="btn-outline btn-xs">📄 View File</a>}
                   </div>
                   <div className="history-date">{new Date(h.created_at).toLocaleDateString()}</div>
                 </div>

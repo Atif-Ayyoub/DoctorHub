@@ -37,17 +37,20 @@ app.get('/health', healthHandler);
 
 app.use(errorHandler);
 
-// Auto-cancel expired appointments every 5 minutes
-const AppointmentService = require('./services/appointmentService');
-setInterval(async () => {
-  try { await AppointmentService.cancelExpiredAppointments(); } catch(e) { console.error('Cleanup error:', e.message); }
-}, 5 * 60 * 1000);
+// Auto-cancel expired appointments during long-running local/server deployments.
+// Vercel Serverless Functions should not start background intervals at module load.
+if (process.env.VERCEL !== '1') {
+  const AppointmentService = require('./services/appointmentService');
+  setInterval(async () => {
+    try { await AppointmentService.cancelExpiredAppointments(); } catch(e) { console.error('Cleanup error:', e.message); }
+  }, 5 * 60 * 1000);
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Doctor Hub API running on port ${PORT}`);
   console.log(`Health: http://localhost:${PORT}/api/health`);
-  console.log(`Supabase URL: ${process.env.SUPABASE_URL || 'https://mbetzlrmubmzjpllvowe.supabase.co'}`);
+  console.log(`Supabase configured: ${Boolean(process.env.SUPABASE_URL)}`);
 });
 
 module.exports = app;
