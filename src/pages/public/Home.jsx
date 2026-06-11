@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Search, Calendar, Shield, Star, Users, Clock } from 'lucide-react';
+import { Search, Calendar, Shield, Star, Users, Clock, FileText, MessageCircle } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -18,7 +18,27 @@ export default function Home() {
         </div>
         <div className="hero-image">
           <div className="hero-visual">
-            <span>🏥</span>
+            <div className="hero-logo-orbit" aria-hidden="true" />
+            <img
+              src="/doctor-hub-healthcare-logo.jpg"
+              alt="Doctor Hub Healthcare Platform Logo"
+              className="hero-logo-img"
+              width="640"
+              height="640"
+              fetchPriority="high"
+            />
+            <div className="floating-card floating-card-top">
+              <Calendar size={18} />
+              <span>Online Appointments</span>
+            </div>
+            <div className="floating-card floating-card-left">
+              <FileText size={18} />
+              <span>Medical History</span>
+            </div>
+            <div className="floating-card floating-card-right">
+              <MessageCircle size={18} />
+              <span>Prescriptions</span>
+            </div>
           </div>
         </div>
       </section>

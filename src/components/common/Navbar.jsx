@@ -1,12 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { Bell, LogOut, User, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { Bell, LogOut, Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 8);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -20,10 +28,16 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-brand">
-        <Link to="/">
-          <span className="brand-icon">🏥</span>
+        <Link to="/" aria-label="Doctor Hub home">
+          <img
+            src="/doctor-hub-healthcare-logo.jpg"
+            alt="Doctor Hub Healthcare Platform Logo"
+            className="brand-logo"
+            width="60"
+            height="60"
+          />
           <span className="brand-text">Doctor Hub</span>
         </Link>
       </div>
@@ -41,8 +55,8 @@ export default function Navbar() {
         {!user && (
           <>
             <Link to="/doctors" onClick={() => setMenuOpen(false)}>Find Doctors</Link>
-            <Link to="/login" className="btn-outline" onClick={() => setMenuOpen(false)}>Login</Link>
-            <Link to="/register" className="btn-primary" onClick={() => setMenuOpen(false)}>Register</Link>
+            <Link to="/login" className="btn-outline nav-login" onClick={() => setMenuOpen(false)}>Login</Link>
+            <Link to="/register" className="btn-primary nav-register" onClick={() => setMenuOpen(false)}>Register</Link>
           </>
         )}
         {user && (
