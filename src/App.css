@@ -700,8 +700,8 @@ img {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 24px;
+  gap: clamp(16px, 2.4vw, 28px);
+  margin-bottom: clamp(24px, 3vw, 34px);
 }
 
 .page-header {
@@ -727,8 +727,9 @@ img {
 .filter-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px;
+  gap: clamp(12px, 1.8vw, 18px);
+  margin-bottom: clamp(22px, 3vw, 30px);
+  padding: clamp(12px, 1.6vw, 18px);
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid var(--border);
@@ -847,6 +848,7 @@ textarea:focus,
 
 .doctors-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.2vw, 28px);
 }
 
 .doctor-card {
@@ -859,8 +861,8 @@ textarea:focus,
 .doctor-card-header {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  padding: 22px 22px 14px;
+  gap: clamp(14px, 1.7vw, 18px);
+  padding: clamp(20px, 2vw, 26px) clamp(20px, 2vw, 26px) 14px;
 }
 
 .doctor-avatar,
@@ -901,8 +903,8 @@ textarea:focus,
 
 .doctor-card-body {
   display: grid;
-  gap: 9px;
-  padding: 0 22px 18px;
+  gap: 10px;
+  padding: 0 clamp(20px, 2vw, 26px) 20px;
   color: var(--text);
 }
 
@@ -928,8 +930,13 @@ textarea:focus,
   display: flex;
   gap: 10px;
   margin-top: auto;
-  padding: 18px 22px 22px;
+  padding: 18px clamp(20px, 2vw, 26px) clamp(20px, 2vw, 26px);
   border-top: 1px solid var(--border);
+}
+
+.doctor-card > .btn-full {
+  width: auto;
+  margin: auto clamp(20px, 2vw, 26px) clamp(20px, 2vw, 26px);
 }
 
 .badge {
@@ -1102,13 +1109,31 @@ textarea:focus,
   box-shadow: 18px 0 48px rgba(13, 36, 54, 0.16);
 }
 
-.sidebar::before {
-  content: 'Doctor Hub';
-  display: block;
-  margin: 6px 8px 24px;
+.sidebar-brand {
+  display: grid;
+  gap: 8px;
+  margin: 6px 8px 26px;
+}
+
+.sidebar-brand-name {
   color: #ffffff;
   font-size: 1.15rem;
   font-weight: 900;
+  line-height: 1.1;
+}
+
+.sidebar-portal-label {
+  width: fit-content;
+  padding: 7px 10px;
+  color: #b8fff8;
+  background: rgba(86, 214, 205, 0.12);
+  border: 1px solid rgba(86, 214, 205, 0.28);
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .sidebar-nav {
@@ -1155,7 +1180,7 @@ textarea:focus,
 
 .dashboard-main {
   min-width: 0;
-  padding: clamp(22px, 4vw, 42px);
+  padding: clamp(26px, 4vw, 48px);
 }
 
 .panel-hero-header {
@@ -1164,7 +1189,8 @@ textarea:focus,
 
 .stats-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-bottom: 24px;
+  gap: clamp(16px, 2vw, 22px);
+  margin-bottom: clamp(24px, 3vw, 34px);
 }
 
 .stat-card {
@@ -1228,7 +1254,7 @@ textarea:focus,
 .dashboard-section,
 .form-card,
 .report-card {
-  padding: 22px;
+  padding: clamp(20px, 2.4vw, 28px);
 }
 
 .admin-create-card {
@@ -1269,7 +1295,7 @@ textarea:focus,
 }
 
 .section-header {
-  margin-bottom: 16px;
+  margin-bottom: clamp(16px, 2vw, 22px);
 }
 
 .table-wrap {
@@ -1313,7 +1339,7 @@ textarea:focus,
 .form-grid,
 .form-grid-2 {
   display: grid;
-  gap: 16px;
+  gap: clamp(16px, 2vw, 22px);
 }
 
 .form-grid {
@@ -1329,7 +1355,7 @@ textarea:focus,
 }
 
 .form-actions {
-  margin-top: 20px;
+  margin-top: clamp(20px, 2.4vw, 28px);
   justify-content: flex-end;
 }
 
@@ -1368,7 +1394,7 @@ textarea:focus,
 .assistants-list,
 .notifications-list {
   display: grid;
-  gap: 14px;
+  gap: clamp(14px, 1.8vw, 20px);
 }
 
 .clinics-grid,
@@ -1390,7 +1416,7 @@ textarea:focus,
 .profile-info-card,
 .schedule-card,
 .quick-action-card {
-  padding: 18px;
+  padding: clamp(18px, 2.2vw, 24px);
 }
 
 .appointment-card {
@@ -1690,7 +1716,7 @@ textarea:focus,
 
 .book-step2 {
   display: grid;
-  gap: 20px;
+  gap: clamp(20px, 2.6vw, 30px);
 }
 
 .selected-doctor-card,
@@ -1703,7 +1729,7 @@ textarea:focus,
 .slots-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-  gap: 10px;
+  gap: 12px;
 }
 
 .slot-btn {
@@ -1723,29 +1749,62 @@ textarea:focus,
 }
 
 .steps {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(10px, 1.8vw, 16px);
+  width: min(100%, 620px);
+  margin: -4px 0 clamp(26px, 3vw, 36px);
 }
 
 .step {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 999px;
-  color: var(--muted);
-  background: #ffffff;
+  gap: 10px;
+  min-width: 0;
+  min-height: 58px;
+  padding: 10px 12px;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.8);
   border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+}
+
+.step span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  font-weight: 900;
+}
+
+.step label {
+  min-width: 0;
+  color: inherit;
+  font-size: 0.95rem;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
   font-weight: 900;
 }
 
 .step.active,
 .step.done {
+  color: var(--primary-dark);
+  background: rgba(15, 143, 136, 0.1);
+  border-color: var(--primary);
+}
+
+.step.active span,
+.step.done span {
   color: #ffffff;
   background: var(--primary);
   border-color: var(--primary);
+  box-shadow: 0 10px 20px rgba(15, 143, 136, 0.22);
 }
 
 .messages-layout {
@@ -2249,6 +2308,10 @@ textarea:focus,
     align-items: stretch;
   }
 
+  .steps {
+    width: 100%;
+  }
+
   .payment-card {
     grid-template-columns: 1fr;
   }
@@ -2278,8 +2341,8 @@ textarea:focus,
     padding: 14px;
   }
 
-  .sidebar::before {
-    margin-bottom: 12px;
+  .sidebar-brand {
+    margin: 4px 4px 14px;
   }
 
   .sidebar-nav {
@@ -2385,7 +2448,29 @@ textarea:focus,
   }
 
   .dashboard-main {
-    padding: 18px 14px 28px;
+    padding: 22px 14px 32px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .step {
+    min-height: 52px;
+  }
+
+  .search-bar-row,
+  .filter-row {
+    margin-bottom: 22px;
+  }
+
+  .doctor-card-header,
+  .doctor-card-body,
+  .doctor-card-footer {
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
   .dashboard-section,
