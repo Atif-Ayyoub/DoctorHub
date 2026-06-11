@@ -14,17 +14,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/doctors', require('./routes/doctorRoutes'));
-app.use('/api/appointments', require('./routes/appointmentRoutes'));
-app.use('/api/payments', require('./routes/paymentRoutes'));
-app.use('/api/history', require('./routes/historyRoutes'));
-app.use('/api/prescriptions', require('./routes/prescriptionRoutes'));
-app.use('/api/messages', require('./routes/messageRoutes'));
-app.use('/api/notifications', require('./routes/notificationRoutes'));
-app.use('/api/admin', require('./routes/adminRoutes'));
+const routes = [
+  ['auth', require('./routes/authRoutes')],
+  ['doctors', require('./routes/doctorRoutes')],
+  ['appointments', require('./routes/appointmentRoutes')],
+  ['payments', require('./routes/paymentRoutes')],
+  ['history', require('./routes/historyRoutes')],
+  ['prescriptions', require('./routes/prescriptionRoutes')],
+  ['messages', require('./routes/messageRoutes')],
+  ['notifications', require('./routes/notificationRoutes')],
+  ['admin', require('./routes/adminRoutes')],
+];
 
-app.get('/api/health', (req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() }));
+routes.forEach(([name, router]) => {
+  app.use(`/api/${name}`, router);
+  app.use(`/${name}`, router);
+});
+
+const healthHandler = (req, res) => res.json({ status: 'ok', timestamp: new Date().toISOString() });
+app.get('/api/health', healthHandler);
+app.get('/health', healthHandler);
 
 app.use(errorHandler);
 
