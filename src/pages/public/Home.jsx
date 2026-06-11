@@ -11,9 +11,9 @@ export default function Home() {
           <p>Find the best Allopathic, Homeopathic, or Herbal doctors near you. Book appointments, manage your health records, and get prescriptions — all in one place.</p>
           <div className="hero-actions">
             <Link to="/doctors" className="btn-primary btn-lg">
-              <Search size={20} /> Find a Doctor
+              <Search size={20} /> Find doctors in Pakistan
             </Link>
-            <Link to="/register" className="btn-outline btn-lg">Get Started Free</Link>
+            <Link to="/register" className="btn-outline btn-lg">Create patient account</Link>
           </div>
         </div>
         <div className="hero-image">
@@ -25,6 +25,7 @@ export default function Home() {
 
       {/* Stats */}
       <section className="stats-row">
+        <h2 className="sr-only">Doctor Hub healthcare platform highlights</h2>
         <div className="stat-item"><h3>500+</h3><p>Verified Doctors</p></div>
         <div className="stat-item"><h3>10K+</h3><p>Happy Patients</p></div>
         <div className="stat-item"><h3>3</h3><p>Treatment Types</p></div>
@@ -97,7 +98,11 @@ export default function Home() {
       <section className="cta-section">
         <h2>Ready to take control of your health?</h2>
         <p>Join thousands of patients managing their health with Doctor Hub.</p>
-        <Link to="/register" className="btn-primary btn-lg">Create Free Account</Link>
+        <div className="hero-actions">
+          <Link to="/doctors" className="btn-outline btn-lg">Search doctors by disease</Link>
+          <Link to="/login" className="btn-outline btn-lg">Login to patient portal</Link>
+          <Link to="/register" className="btn-primary btn-lg">Create free patient account</Link>
+        </div>
       </section>
     </div>
   );

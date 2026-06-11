@@ -28,7 +28,12 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+      <button
+        className="menu-toggle"
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={menuOpen}
+      >
         {menuOpen ? <X size={22} /> : <Menu size={22} />}
       </button>
 
@@ -43,7 +48,7 @@ export default function Navbar() {
         {user && (
           <>
             <Link to={dashboardLink()} onClick={() => setMenuOpen(false)}>Dashboard</Link>
-            <Link to="/notifications" onClick={() => setMenuOpen(false)}><Bell size={18} /></Link>
+            <Link to="/notifications" onClick={() => setMenuOpen(false)} aria-label="View notifications"><Bell size={18} /></Link>
             <span className="user-badge">{user.role.replace('_', ' ')}</span>
             <button onClick={handleLogout} className="btn-outline btn-sm">
               <LogOut size={16} /> Logout

@@ -61,6 +61,7 @@ export default function Doctors() {
       </div>
 
       <p className="results-count">{total} doctor{total !== 1 ? 's' : ''} found</p>
+      <h2 className="sr-only">Verified doctors matching your search</h2>
 
       {loading ? (
         <div className="loading-grid">
@@ -98,8 +99,8 @@ export default function Doctors() {
                 {doc.bio && <p className="doctor-bio">{doc.bio.slice(0, 100)}{doc.bio.length > 100 ? '...' : ''}</p>}
               </div>
               <div className="doctor-card-footer">
-                <Link to={`/doctors/${doc.id}`} className="btn-primary btn-sm">View Profile</Link>
-                <Link to={`/doctors/${doc.id}/book`} className="btn-outline btn-sm">Book Now</Link>
+                <Link to={`/doctors/${doc.id}`} className="btn-primary btn-sm">View {doc.full_name} profile</Link>
+                <Link to={`/doctors/${doc.id}/book`} className="btn-outline btn-sm">Book appointment</Link>
               </div>
             </div>
           ))}

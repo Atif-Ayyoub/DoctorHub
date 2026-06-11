@@ -56,7 +56,7 @@ export default function UploadPayment() {
           <form onSubmit={submit}>
             <div className="upload-area" onClick={() => document.getElementById('fileInput').click()}>
               {preview ? (
-                <img src={preview} alt="preview" className="upload-preview" />
+                <img src={preview} alt="Payment proof preview before upload" className="upload-preview" loading="lazy" width="320" height="220" />
               ) : (
                 <>
                   <Upload size={40} />

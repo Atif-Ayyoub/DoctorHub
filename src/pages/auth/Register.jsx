@@ -31,7 +31,7 @@ export default function Register() {
       <div className="auth-card">
         <div className="auth-header">
           <span className="auth-logo">🏥</span>
-          <h2>Create Account</h2>
+          <h1>Create Account</h1>
           <p>Join Doctor Hub today</p>
         </div>
         <form onSubmit={handleSubmit}>

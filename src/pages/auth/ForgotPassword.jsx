@@ -26,7 +26,7 @@ export default function ForgotPassword() {
     <div className="auth-page">
       <div className="auth-card text-center">
         <span style={{ fontSize: 48 }}>📧</span>
-        <h2>Check your email</h2>
+        <h1>Check your email</h1>
         <p>If that email is registered, a reset link has been sent.</p>
         <Link to="/login" className="btn-primary btn-full" style={{ marginTop: 16 }}>Back to Login</Link>
       </div>
@@ -38,7 +38,7 @@ export default function ForgotPassword() {
       <div className="auth-card">
         <div className="auth-header">
           <span className="auth-logo">🔐</span>
-          <h2>Forgot Password</h2>
+          <h1>Forgot Password</h1>
           <p>Enter your email to receive a reset link</p>
         </div>
         <form onSubmit={handleSubmit}>

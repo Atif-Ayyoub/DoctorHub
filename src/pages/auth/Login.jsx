@@ -31,7 +31,7 @@ export default function Login() {
       <div className="auth-card">
         <div className="auth-header">
           <span className="auth-logo">🏥</span>
-          <h2>Welcome Back</h2>
+          <h1>Welcome Back</h1>
           <p>Sign in to your Doctor Hub account</p>
         </div>
         <form onSubmit={handleSubmit}>
