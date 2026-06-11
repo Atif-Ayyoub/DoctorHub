@@ -2,6 +2,24 @@
 
 Doctor Hub is a full-stack healthcare appointment platform for patients, doctors, assistants, admins, and super admins. The app lets patients discover doctors, book appointments, upload payments, view medical history, exchange messages, and manage prescriptions. Doctors can manage clinics, schedules, appointments, prescriptions, assistants, messages, and their public profile. Admin users can manage platform users, doctors, and reports.
 
+
+## Site URL
+
+https://doctor-hub-beta.vercel.app/
+
+## Demo Login
+
+Seeded demo users are created by `npm run seed` inside the backend folder.
+
+| Role | Email | Password |
+| --- | --- | --- |
+| Super Admin | `superadmin@doctorhub.com` | `SuperAdmin@123` |
+| Admin | `admin@doctorhub.com` | `Admin@12345` |
+| Doctor | `doctor@doctorhub.com` | `Doctor@123` |
+| Patient | `patient@doctorhub.com` | `Patient@123` |
+
+Assistant accounts are not seeded by default. Log in as the demo doctor and create an assistant from the doctor assistant management area.
+
 ## Tech Stack
 
 - Frontend: React, Vite, React Router, Axios, Lucide React
@@ -34,18 +52,7 @@ doctor-hub/
 - Admin user, doctor, and report management
 - Doctor assistant management with a limit of 3 assistants per doctor
 
-## Demo Login
 
-Seeded demo users are created by `npm run seed` inside the backend folder.
-
-| Role | Email | Password |
-| --- | --- | --- |
-| Super Admin | `superadmin@doctorhub.com` | `SuperAdmin@123` |
-| Admin | `admin@doctorhub.com` | `Admin@12345` |
-| Doctor | `doctor@doctorhub.com` | `Doctor@123` |
-| Patient | `patient@doctorhub.com` | `Patient@123` |
-
-Assistant accounts are not seeded by default. Log in as the demo doctor and create an assistant from the doctor assistant management area.
 
 ## Prerequisites
 
