@@ -1,17 +1,14 @@
 User-agent: *
 Allow: /
-Disallow: /patient
+
 Disallow: /patient/
-Disallow: /doctor
 Disallow: /doctor/
-Disallow: /assistant
 Disallow: /assistant/
-Disallow: /admin
 Disallow: /admin/
-Disallow: /superadmin
 Disallow: /superadmin/
-Disallow: /notifications
 Disallow: /notifications/
 Disallow: /api/
+Disallow: /login
+Disallow: /register
 
 Sitemap: https://doctor-hub-beta.vercel.app/sitemap.xml
