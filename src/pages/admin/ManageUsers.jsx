@@ -47,7 +47,9 @@ export default function ManageUsers() {
       if (!active) return;
       setUsers(r.data.data?.users || []);
       setTotal(r.data.data?.total || 0);
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => {
+      if (active) setLoading(false);
+    });
     return () => { active = false; };
   }, [page]);
 
