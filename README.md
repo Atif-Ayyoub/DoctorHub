@@ -58,16 +58,16 @@ doctor-hub/
 
 <table>
   <tr>
-    <td><img src="asseets/screenshots/site-screenshots-01.png" alt="Site Screenshots 01" width="100%" /></td>
-    <td><img src="asseets/screenshots/site-screenshots-02.png" alt="Site Screenshots 02" width="100%" /></td>
+    <td><img src="assets/screenshots/site-screenshots-01.png" alt="Site Screenshots 01" width="100%" /></td>
+    <td><img src="assets/screenshots/site-screenshots-02.png" alt="Site Screenshots 02" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/site-screenshots-03.png" alt="Site Screenshots 03" width="100%" /></td>
-    <td><img src="asseets/screenshots/site-screenshots-04.png" alt="Site Screenshots 04" width="100%" /></td>
+    <td><img src="assets/screenshots/site-screenshots-03.png" alt="Site Screenshots 03" width="100%" /></td>
+    <td><img src="assets/screenshots/site-screenshots-04.png" alt="Site Screenshots 04" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/site-screenshots-05.png" alt="Site Screenshots 05" width="100%" /></td>
-    <td><img src="asseets/screenshots/site-screenshots-06.png" alt="Site Screenshots 06" width="100%" /></td>
+    <td><img src="assets/screenshots/site-screenshots-05.png" alt="Site Screenshots 05" width="100%" /></td>
+    <td><img src="assets/screenshots/site-screenshots-06.png" alt="Site Screenshots 06" width="100%" /></td>
   </tr>
 </table>
 
@@ -75,19 +75,19 @@ doctor-hub/
 
 <table>
   <tr>
-    <td><img src="asseets/screenshots/patient-portal-01.png" alt="Patient Portal 01" width="100%" /></td>
-    <td><img src="asseets/screenshots/patient-portal-02.png" alt="Patient Portal 02" width="100%" /></td>
+    <td><img src="assets/screenshots/patient-portal-01.png" alt="Patient Portal 01" width="100%" /></td>
+    <td><img src="assets/screenshots/patient-portal-02.png" alt="Patient Portal 02" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/patient-portal-03.png" alt="Patient Portal 03" width="100%" /></td>
-    <td><img src="asseets/screenshots/patient-portal-04.png" alt="Patient Portal 04" width="100%" /></td>
+    <td><img src="assets/screenshots/patient-portal-03.png" alt="Patient Portal 03" width="100%" /></td>
+    <td><img src="assets/screenshots/patient-portal-04.png" alt="Patient Portal 04" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/patient-portal-05.png" alt="Patient Portal 05" width="100%" /></td>
-    <td><img src="asseets/screenshots/patient-portal-06.png" alt="Patient Portal 06" width="100%" /></td>
+    <td><img src="assets/screenshots/patient-portal-05.png" alt="Patient Portal 05" width="100%" /></td>
+    <td><img src="assets/screenshots/patient-portal-06.png" alt="Patient Portal 06" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/patient-portal-07.png" alt="Patient Portal 07" width="100%" /></td>
+    <td><img src="assets/screenshots/patient-portal-07.png" alt="Patient Portal 07" width="100%" /></td>
     <td></td>
   </tr>
 </table>
@@ -96,24 +96,24 @@ doctor-hub/
 
 <table>
   <tr>
-    <td><img src="asseets/screenshots/doctor-portal-01.png" alt="Doctor Portal 01" width="100%" /></td>
+    <td><img src="assets/screenshots/doctor-portal-01.png" alt="Doctor Portal 01" width="100%" /></td>
     <td><img src="assets/screenshots/doctor-portal-02.png" alt="Doctor Portal 02" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/doctor-portal-03.png" alt="Doctor Portal 03" width="100%" /></td>
-    <td><img src="asseets/screenshots/doctor-portal-04.png" alt="Doctor Portal 04" width="100%" /></td>
+    <td><img src="assets/screenshots/doctor-portal-03.png" alt="Doctor Portal 03" width="100%" /></td>
+    <td><img src="assets/screenshots/doctor-portal-04.png" alt="Doctor Portal 04" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/doctor-portal-05.png" alt="Doctor Portal 05" width="100%" /></td>
-    <td><img src="asseets/screenshots/doctor-portal-06.png" alt="Doctor Portal 06" width="100%" /></td>
+    <td><img src="assets/screenshots/doctor-portal-05.png" alt="Doctor Portal 05" width="100%" /></td>
+    <td><img src="assets/screenshots/doctor-portal-06.png" alt="Doctor Portal 06" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/doctor-portal-07.png" alt="Doctor Portal 07" width="100%" /></td>
-    <td><img src="asseets/screenshots/doctor-portal-08.png" alt="Doctor Portal 08" width="100%" /></td>
+    <td><img src="assets/screenshots/doctor-portal-07.png" alt="Doctor Portal 07" width="100%" /></td>
+    <td><img src="assets/screenshots/doctor-portal-08.png" alt="Doctor Portal 08" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/doctor-portal-09.png" alt="Doctor Portal 09" width="100%" /></td>
-    <td><img src="asseets/screenshots/doctor-portal-10.png" alt="Doctor Portal 10" width="100%" /></td>
+    <td><img src="assets/screenshots/doctor-portal-09.png" alt="Doctor Portal 09" width="100%" /></td>
+    <td><img src="assets/screenshots/doctor-portal-10.png" alt="Doctor Portal 10" width="100%" /></td>
   </tr>
 </table>
 
@@ -121,11 +121,11 @@ doctor-hub/
 
 <table>
   <tr>
-    <td><img src="asseets/screenshots/assistant-portal-01.png" alt="Assistant Portal 01" width="100%" /></td>
-    <td><img src="asseets/screenshots/assistant-portal-02.png" alt="Assistant Portal 02" width="100%" /></td>
+    <td><img src="assets/screenshots/assistant-portal-01.png" alt="Assistant Portal 01" width="100%" /></td>
+    <td><img src="assets/screenshots/assistant-portal-02.png" alt="Assistant Portal 02" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/assistant-portal-03.png" alt="Assistant Portal 03" width="100%" /></td>
+    <td><img src="assets/screenshots/assistant-portal-03.png" alt="Assistant Portal 03" width="100%" /></td>
     <td></td>
   </tr>
 </table>
@@ -134,16 +134,16 @@ doctor-hub/
 
 <table>
   <tr>
-    <td><img src="asseets/screenshots/admin-portal-01.png" alt="Admin Portal 01" width="100%" /></td>
-    <td><img src="asseets/screenshots/admin-portal-02.png" alt="Admin Portal 02" width="100%" /></td>
+    <td><img src="assets/screenshots/admin-portal-01.png" alt="Admin Portal 01" width="100%" /></td>
+    <td><img src="assets/screenshots/admin-portal-02.png" alt="Admin Portal 02" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/admin-portal-03.png" alt="Admin Portal 03" width="100%" /></td>
-    <td><img src="asseets/screenshots/admin-portal-04.png" alt="Admin Portal 04" width="100%" /></td>
+    <td><img src="assets/screenshots/admin-portal-03.png" alt="Admin Portal 03" width="100%" /></td>
+    <td><img src="assets/screenshots/admin-portal-04.png" alt="Admin Portal 04" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/admin-portal-05.png" alt="Admin Portal 05" width="100%" /></td>
-    <td><img src="asseets/screenshots/admin-portal-06.png" alt="Admin Portal 06" width="100%" /></td>
+    <td><img src="assets/screenshots/admin-portal-05.png" alt="Admin Portal 05" width="100%" /></td>
+    <td><img src="assets/screenshots/admin-portal-06.png" alt="Admin Portal 06" width="100%" /></td>
   </tr>
 </table>
 
@@ -151,19 +151,19 @@ doctor-hub/
 
 <table>
   <tr>
-    <td><img src="asseets/screenshots/super-admin-portal-01.png" alt="Super Admin Portal 01" width="100%" /></td>
-    <td><img src="asseets/screenshots/super-admin-portal-02.png" alt="Super Admin Portal 02" width="100%" /></td>
+    <td><img src="assets/screenshots/super-admin-portal-01.png" alt="Super Admin Portal 01" width="100%" /></td>
+    <td><img src="assets/screenshots/super-admin-portal-02.png" alt="Super Admin Portal 02" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/super-admin-portal-03.png" alt="Super Admin Portal 03" width="100%" /></td>
-    <td><img src="asseets/screenshots/super-admin-portal-04.png" alt="Super Admin Portal 04" width="100%" /></td>
+    <td><img src="assets/screenshots/super-admin-portal-03.png" alt="Super Admin Portal 03" width="100%" /></td>
+    <td><img src="assets/screenshots/super-admin-portal-04.png" alt="Super Admin Portal 04" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/super-admin-portal-05.png" alt="Super Admin Portal 05" width="100%" /></td>
-    <td><img src="asseets/screenshots/super-admin-portal-06.png" alt="Super Admin Portal 06" width="100%" /></td>
+    <td><img src="assets/screenshots/super-admin-portal-05.png" alt="Super Admin Portal 05" width="100%" /></td>
+    <td><img src="assets/screenshots/super-admin-portal-06.png" alt="Super Admin Portal 06" width="100%" /></td>
   </tr>
   <tr>
-    <td><img src="asseets/screenshots/super-admin-portal-07.png" alt="Super Admin Portal 07" width="100%" /></td>
+    <td><img src="assets/screenshots/super-admin-portal-07.png" alt="Super Admin Portal 07" width="100%" /></td>
     <td></td>
   </tr>
 </table>
