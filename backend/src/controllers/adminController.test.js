@@ -90,15 +90,36 @@ test('keeps legacy report fields and appends real analytics data', async () => {
   assert.equal(data.payment_analytics.total_revenue, 125);
 });
 
-test('rejects the report when any Supabase analytics query fails', async () => {
-  const failed = { data: null, count: null, error: new Error('query failed') };
+test('keeps aggregate dashboard stats when an optional analytics query fails', async () => {
+  const failed = { data: null, count: null, error: new Error('monthly payments query failed') };
+  const rpcResponses = [
+    result([{ role: 'patient', count: 2 }, { role: 'doctor', count: 1 }]),
+    result([{ status: 'confirmed', count: 3 }]),
+    result([{ status: 'verified', count: 2 }]),
+  ];
+  const tableResponses = {
+    doctors: [result(null, 1)],
+    patients: [result(null, 2)],
+    clinics: [result(null, 4)],
+    users: [result([{ role: 'patient', created_at: '2026-06-01T10:00:00Z' }])],
+    appointments: [result([{ status: 'confirmed', created_at: '2026-06-02T10:00:00Z' }])],
+    payments: [failed],
+  };
   const client = {
-    rpc: () => createQuery(failed),
-    from: () => createQuery(failed),
+    rpc: () => createQuery(rpcResponses.shift()),
+    from: (table) => createQuery(tableResponses[table].shift()),
   };
 
-  await assert.rejects(
-    () => getReportData(client, new Date('2026-06-14T12:00:00Z')),
-    /query failed/,
-  );
+  const data = await getReportData(client, new Date('2026-06-14T12:00:00Z'));
+
+  assert.equal(data.total_doctors, 1);
+  assert.equal(data.total_patients, 2);
+  assert.equal(data.total_clinics, 4);
+  assert.deepEqual(data.users_by_role, [
+    { role: 'patient', count: 2 },
+    { role: 'doctor', count: 1 },
+  ]);
+  assert.equal(data.appointment_summary.total, 3);
+  assert.equal(data.payment_analytics.total, 2);
+  assert.equal(data.payment_analytics.total_revenue, 0);
 });

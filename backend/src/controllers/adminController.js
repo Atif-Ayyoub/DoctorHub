@@ -88,9 +88,6 @@ const getReportData = async (client = supabase, now = new Date()) => {
     `),
   ]);
 
-  const failedQuery = results.find((result) => result.error);
-  if (failedQuery) throw failedQuery.error;
-
   const [
     { data: usersByRole },
     { data: appointmentsByStatus },
