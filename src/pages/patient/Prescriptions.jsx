@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import API from '../../api/axios';
 import Sidebar from '../../components/common/Sidebar';
-import { Pill, Calendar, FileText, Search, MessageSquare } from 'lucide-react';
+import { Pill, Calendar, FileText, Search, MessageSquare, Download, Printer } from 'lucide-react';
 
 const sidebarLinks = [
   { to: '/patient', icon: Calendar, label: 'Dashboard' },
@@ -20,6 +20,15 @@ export default function Prescriptions() {
     API.get('/prescriptions/my').then(r => setPrescriptions(r.data.data || [])).catch(() => {}).finally(() => setLoading(false));
   }, []);
 
+  const downloadPdf = async (prescription) => {
+    const { downloadPrescriptionPdf } = await import('../../utils/prescriptionPdf');
+    downloadPrescriptionPdf(prescription);
+  };
+
+  const printPrescription = () => {
+    window.print();
+  };
+
   return (
     <div className="dashboard-layout">
       <Sidebar links={sidebarLinks} />
@@ -37,7 +46,15 @@ export default function Prescriptions() {
                       <h3>Prescription</h3>
                       <span>Dr. {p.doctor_name}</span>
                     </div>
-                    <span className="date-badge">{new Date(p.created_at).toLocaleDateString()}</span>
+                    <div className="form-actions">
+                      <button type="button" className="btn-primary btn-sm" onClick={() => downloadPdf(p)}>
+                        <Download size={16} /> Download PDF
+                      </button>
+                      <button type="button" className="btn-outline btn-sm" onClick={printPrescription}>
+                        <Printer size={16} /> Print
+                      </button>
+                      <span className="date-badge">{new Date(p.created_at).toLocaleDateString()}</span>
+                    </div>
                   </div>
                   <div className="prescription-body">
                     <div className="rx-section">
