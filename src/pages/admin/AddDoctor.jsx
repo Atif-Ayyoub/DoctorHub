@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import API from '../../api/axios';
 import Sidebar from '../../components/common/Sidebar';
 import toast from 'react-hot-toast';
-import { Users, UserPlus, BarChart2 } from 'lucide-react';
+import { Users, UserPlus, BarChart2, LineChart } from 'lucide-react';
 import PasswordInput from '../../components/common/PasswordInput';
 
 const sidebarLinks = [
   { to: '/admin', icon: BarChart2, label: 'Dashboard' },
+  { to: '/admin/analytics', icon: LineChart, label: 'Analytics' },
   { to: '/admin/users', icon: Users, label: 'Manage Users' },
   { to: '/admin/doctors', icon: UserPlus, label: 'Add Doctor' },
   { to: '/admin/reports', icon: BarChart2, label: 'Reports' },

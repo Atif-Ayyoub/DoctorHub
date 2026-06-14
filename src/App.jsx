@@ -34,6 +34,7 @@ const AssistantPayments = lazy(() => import('./pages/assistant/AssistantPayments
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const ManageUsers = lazy(() => import('./pages/admin/ManageUsers'));
 const AddDoctor = lazy(() => import('./pages/admin/AddDoctor'));
+const Analytics = lazy(() => import('./pages/admin/Analytics'));
 const Reports = lazy(() => import('./pages/admin/Reports'));
 const SuperAdminDashboard = lazy(() => import('./pages/superadmin/SuperAdminDashboard'));
 
@@ -114,11 +115,13 @@ function App() {
           <Route path="/assistant/payments" element={<ProtectedRoute roles={['assistant']}><AssistantPayments /></ProtectedRoute>} />
 
           <Route path="/admin" element={<ProtectedRoute roles={['admin', 'super_admin']}><AdminDashboard /></ProtectedRoute>} />
+          <Route path="/admin/analytics" element={<ProtectedRoute roles={['admin', 'super_admin']}><Analytics /></ProtectedRoute>} />
           <Route path="/admin/users" element={<ProtectedRoute roles={['admin', 'super_admin']}><ManageUsers /></ProtectedRoute>} />
           <Route path="/admin/doctors" element={<ProtectedRoute roles={['admin', 'super_admin']}><AddDoctor /></ProtectedRoute>} />
           <Route path="/admin/reports" element={<ProtectedRoute roles={['admin', 'super_admin']}><Reports /></ProtectedRoute>} />
 
           <Route path="/superadmin" element={<ProtectedRoute roles={['super_admin']}><SuperAdminDashboard /></ProtectedRoute>} />
+          <Route path="/superadmin/analytics" element={<ProtectedRoute roles={['super_admin']}><Analytics /></ProtectedRoute>} />
           <Route path="/superadmin/users" element={<ProtectedRoute roles={['super_admin']}><ManageUsers /></ProtectedRoute>} />
           <Route path="/superadmin/reports" element={<ProtectedRoute roles={['super_admin']}><Reports /></ProtectedRoute>} />
 

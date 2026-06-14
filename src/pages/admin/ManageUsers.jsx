@@ -4,10 +4,11 @@ import Sidebar from '../../components/common/Sidebar';
 import PasswordInput from '../../components/common/PasswordInput';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
-import { Users, UserPlus, BarChart2, Shield, Mail, Phone } from 'lucide-react';
+import { Users, UserPlus, BarChart2, LineChart, Shield, Mail, Phone } from 'lucide-react';
 
 const adminLinks = [
   { to: '/admin', icon: BarChart2, label: 'Dashboard' },
+  { to: '/admin/analytics', icon: LineChart, label: 'Analytics' },
   { to: '/admin/users', icon: Users, label: 'Manage Users' },
   { to: '/admin/doctors', icon: UserPlus, label: 'Add Doctor' },
   { to: '/admin/reports', icon: BarChart2, label: 'Reports' },
@@ -15,6 +16,7 @@ const adminLinks = [
 
 const superAdminLinks = [
   { to: '/superadmin', icon: BarChart2, label: 'Dashboard' },
+  { to: '/superadmin/analytics', icon: LineChart, label: 'Analytics' },
   { to: '/superadmin/users', icon: Users, label: 'All Users' },
   { to: '/admin/doctors', icon: UserPlus, label: 'Add Doctor' },
   { to: '/superadmin/reports', icon: BarChart2, label: 'Reports' },
@@ -39,7 +41,15 @@ export default function ManageUsers() {
     }).catch(() => {}).finally(() => setLoading(false));
   };
 
-  useEffect(() => { fetchUsers(); }, [page]);
+  useEffect(() => {
+    let active = true;
+    API.get(`/admin/users?page=${page}&page_size=20`).then(r => {
+      if (!active) return;
+      setUsers(r.data.data?.users || []);
+      setTotal(r.data.data?.total || 0);
+    }).catch(() => {});
+    return () => { active = false; };
+  }, [page]);
 
   const createAdmin = async (e) => {
     e.preventDefault();

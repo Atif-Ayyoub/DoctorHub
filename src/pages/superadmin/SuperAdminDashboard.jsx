@@ -5,10 +5,11 @@ import { useAuth } from '../../context/AuthContext';
 import Sidebar from '../../components/common/Sidebar';
 import StatCard from '../../components/common/StatCard';
 import toast from 'react-hot-toast';
-import { Users, Shield, BarChart2, Settings, UserPlus } from 'lucide-react';
+import { Users, BarChart2, LineChart, UserPlus } from 'lucide-react';
 
 const sidebarLinks = [
   { to: '/superadmin', icon: BarChart2, label: 'Dashboard' },
+  { to: '/superadmin/analytics', icon: LineChart, label: 'Analytics' },
   { to: '/superadmin/users', icon: Users, label: 'All Users' },
   { to: '/superadmin/reports', icon: BarChart2, label: 'Reports' },
   { to: '/admin/doctors', icon: UserPlus, label: 'Add Doctor' },

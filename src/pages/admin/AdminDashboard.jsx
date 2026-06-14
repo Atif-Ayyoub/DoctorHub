@@ -1,21 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../api/axios';
-import { useAuth } from '../../context/AuthContext';
 import Sidebar from '../../components/common/Sidebar';
 import StatCard from '../../components/common/StatCard';
 import toast from 'react-hot-toast';
-import { Users, UserPlus, BarChart2, Settings } from 'lucide-react';
+import { Users, UserPlus, BarChart2, LineChart } from 'lucide-react';
 
 const sidebarLinks = [
   { to: '/admin', icon: BarChart2, label: 'Dashboard' },
+  { to: '/admin/analytics', icon: LineChart, label: 'Analytics' },
   { to: '/admin/users', icon: Users, label: 'Manage Users' },
   { to: '/admin/doctors', icon: UserPlus, label: 'Add Doctor' },
   { to: '/admin/reports', icon: BarChart2, label: 'Reports' },
 ];
 
 export default function AdminDashboard() {
-  const { user } = useAuth();
   const [reports, setReports] = useState(null);
   const [users, setUsers] = useState([]);
 

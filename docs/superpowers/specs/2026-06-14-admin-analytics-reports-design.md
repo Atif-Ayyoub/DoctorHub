@@ -67,7 +67,7 @@ The endpoint adds:
 }
 ```
 
-Monthly data covers the latest 12 calendar months, ordered oldest to newest. Months without rows are zero-filled. User growth is the number of newly created users in each month. Appointment trend is the number of appointments created in each month. Revenue is the sum of payment amounts for verified payments in each month. Invalid or absent numeric values count as zero.
+Monthly data covers the latest 12 calendar months, ordered oldest to newest. Months without rows are zero-filled. User growth is the number of newly created users in each month. Appointment trend is the number of appointments created in each month. Because the current payments table stores proof and verification state but no amount, revenue is the sum of each verified payment's appointment doctor consultation fee. Invalid or absent numeric values count as zero.
 
 If the existing schema uses the payment amount or timestamp column names already defined by the Payment model/schema, the controller uses those exact names. The API aggregation helpers remain pure functions where possible so month bucketing and summaries can be unit tested without Supabase.
 
