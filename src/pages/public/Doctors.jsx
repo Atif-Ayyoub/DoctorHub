@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import API from '../../api/axios';
-import { Search, MapPin, Star, Clock, DollarSign } from 'lucide-react';
+import { Search, Star, Clock, DollarSign } from 'lucide-react';
 
 export default function Doctors() {
   const [searchParams] = useSearchParams();
@@ -99,7 +99,7 @@ export default function Doctors() {
                 {doc.bio && <p className="doctor-bio">{doc.bio.slice(0, 100)}{doc.bio.length > 100 ? '...' : ''}</p>}
               </div>
               <div className="doctor-card-footer">
-                <Link to={`/doctors/${doc.id}`} className="btn-primary btn-sm">View {doc.full_name} profile</Link>
+                <Link to={`/doctors/${doc.id}`} className="btn-primary btn-sm">View profile</Link>
                 <Link to={`/doctors/${doc.id}/book`} className="btn-outline btn-sm">Book appointment</Link>
               </div>
             </div>

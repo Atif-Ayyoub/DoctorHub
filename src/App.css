@@ -856,6 +856,7 @@ textarea:focus,
   flex-direction: column;
   min-height: 100%;
   overflow: hidden;
+  min-width: 0;
 }
 
 .doctor-card-header {
@@ -928,10 +929,20 @@ textarea:focus,
 
 .doctor-card-footer {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: auto;
   padding: 18px clamp(20px, 2vw, 26px) clamp(20px, 2vw, 26px);
   border-top: 1px solid var(--border);
+}
+
+.doctor-card-footer .btn-primary,
+.doctor-card-footer .btn-outline {
+  flex: 1 1 170px;
+  justify-content: center;
+  min-width: 0;
+  text-align: center;
+  white-space: normal;
 }
 
 .doctor-card > .btn-full {
