@@ -1,10 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { expect, it, vi } from 'vitest';
 import Reports from './Reports';
 import { loadAnalyticsData } from '../../utils/analyticsData';
+import { downloadAnalyticsReportPdf } from '../../utils/reportPdf';
 
 vi.mock('../../utils/analyticsData', () => ({ loadAnalyticsData: vi.fn() }));
+vi.mock('../../utils/reportPdf', () => ({ downloadAnalyticsReportPdf: vi.fn() }));
 vi.mock('../../context/AuthContext', () => ({
   useAuth: () => ({ user: { id: 'admin-1', role: 'admin' }, logout: vi.fn() }),
 }));
@@ -45,4 +47,9 @@ it('renders all four report cards with API totals', async () => {
   expect(screen.getByRole('heading', { name: 'Payment Analytics' })).toBeInTheDocument();
   expect(screen.getByText('$900')).toBeInTheDocument();
   expect(screen.getByText('10')).toBeInTheDocument();
+
+  fireEvent.click(screen.getByRole('button', { name: /generate report/i }));
+  expect(downloadAnalyticsReportPdf).toHaveBeenCalledWith(expect.objectContaining({
+    payment_analytics: expect.objectContaining({ total_revenue: 900 }),
+  }));
 });

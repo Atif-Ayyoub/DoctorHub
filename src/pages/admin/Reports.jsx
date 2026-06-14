@@ -6,6 +6,7 @@ import ReportCard from '../../components/analytics/ReportCard';
 import StatItem from '../../components/analytics/StatItem';
 import { useAuth } from '../../context/AuthContext';
 import { loadAnalyticsData } from '../../utils/analyticsData';
+import { downloadAnalyticsReportPdf } from '../../utils/reportPdf';
 
 const adminLinks = [
   { to: '/admin', icon: BarChart2, label: 'Dashboard' },
@@ -42,36 +43,8 @@ export default function Reports() {
   const generateReport = () => {
     const data = state.data;
     if (!data) return toast.error('Report data is not ready');
-    const report = [
-      'Doctor Hub Platform Report',
-      `Generated: ${new Date().toLocaleString()}`,
-      '',
-      `Total revenue: ${currency(data.payment_analytics.total_revenue)}`,
-      `Total users: ${Object.values(data.user_distribution).reduce((sum, value) => sum + value, 0)}`,
-      `Total appointments: ${data.appointment_summary.total}`,
-      `Total payments: ${data.payment_analytics.total}`,
-      '',
-      `Patients: ${data.user_distribution.patient}`,
-      `Doctors: ${data.user_distribution.doctor}`,
-      `Assistants: ${data.user_distribution.assistant}`,
-      `Admins: ${data.user_distribution.admin + data.user_distribution.super_admin}`,
-      '',
-      `Pending appointments: ${data.appointment_summary.pending}`,
-      `Confirmed appointments: ${data.appointment_summary.confirmed}`,
-      `Completed appointments: ${data.appointment_summary.completed}`,
-      `Cancelled appointments: ${data.appointment_summary.cancelled}`,
-    ].join('\n');
-
-    const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `doctor-hub-report-${new Date().toISOString().slice(0, 10)}.txt`;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    URL.revokeObjectURL(url);
-    toast.success('Report generated');
+    downloadAnalyticsReportPdf(data);
+    toast.success('PDF report generated');
   };
 
   if (state.loading) return <div className="dashboard-layout"><Sidebar links={navLinks} /><main className="dashboard-main"><div className="spinner-center"><div className="spinner" /></div></main></div>;

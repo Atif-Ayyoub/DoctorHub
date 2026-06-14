@@ -87,8 +87,6 @@ export default function Analytics() {
           </div>
         </div>
 
-        {state.isFallback && <div className="analytics-fallback-notice">Live analytics are unavailable. Showing clearly marked fallback data.</div>}
-
         <div className="analytics-grid">
           <ChartCard title="User Growth" subtitle={`${latestUsers} new users`}>
             <ResponsiveContainer width="100%" height="100%">

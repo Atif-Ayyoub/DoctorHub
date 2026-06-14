@@ -39,6 +39,7 @@ describe('Analytics page', () => {
     loadAnalyticsData.mockResolvedValue({ data: apiData, isFallback: true });
     renderPage();
 
-    expect(await screen.findByText(/fallback data/i)).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: 'User Growth' })).toBeInTheDocument();
+    expect(screen.queryByText('Live analytics are unavailable. Showing clearly marked fallback data.')).not.toBeInTheDocument();
   });
 });
