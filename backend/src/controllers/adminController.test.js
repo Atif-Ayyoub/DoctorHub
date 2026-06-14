@@ -123,3 +123,52 @@ test('keeps aggregate dashboard stats when an optional analytics query fails', a
   assert.equal(data.payment_analytics.total, 2);
   assert.equal(data.payment_analytics.total_revenue, 0);
 });
+
+test('uses raw analytics summaries when aggregate RPC queries fail', async () => {
+  const failedRpc = { data: null, count: null, error: new Error('aggregate RPC unavailable') };
+  const tableResponses = {
+    doctors: [result(null, 1)],
+    patients: [result(null, 2)],
+    clinics: [result(null, 1)],
+    users: [result([
+      { role: 'patient', created_at: '2026-06-01T10:00:00Z' },
+      { role: 'patient', created_at: '2026-06-02T10:00:00Z' },
+      { role: 'doctor', created_at: '2026-06-03T10:00:00Z' },
+    ])],
+    appointments: [result([
+      { status: 'confirmed', created_at: '2026-06-04T10:00:00Z' },
+      { status: 'completed', created_at: '2026-06-05T10:00:00Z' },
+    ])],
+    payments: [result([
+      {
+        status: 'verified',
+        created_at: '2026-06-06T10:00:00Z',
+        appointments: { doctors: { consultation_fee: 500 } },
+      },
+    ])],
+  };
+  const client = {
+    rpc: () => createQuery(failedRpc),
+    from: (table) => createQuery(tableResponses[table].shift()),
+  };
+
+  const data = await getReportData(client, new Date('2026-06-14T12:00:00Z'));
+
+  assert.deepEqual(data.user_distribution, {
+    patient: 2,
+    doctor: 1,
+    assistant: 0,
+    admin: 0,
+    super_admin: 0,
+  });
+  assert.deepEqual(data.appointment_summary, {
+    total: 2,
+    pending: 0,
+    confirmed: 1,
+    completed: 1,
+    cancelled: 0,
+  });
+  assert.equal(data.payment_analytics.total, 1);
+  assert.equal(data.payment_analytics.verified, 1);
+  assert.equal(data.payment_analytics.total_revenue, 500);
+});

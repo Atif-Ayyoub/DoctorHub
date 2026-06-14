@@ -89,9 +89,9 @@ const getReportData = async (client = supabase, now = new Date()) => {
   ]);
 
   const [
-    { data: usersByRole },
-    { data: appointmentsByStatus },
-    { data: paymentsByStatus },
+    { data: usersByRole, error: usersByRoleError },
+    { data: appointmentsByStatus, error: appointmentsByStatusError },
+    { data: paymentsByStatus, error: paymentsByStatusError },
     { count: totalDoctors },
     { count: totalPatients },
     { count: totalClinics },
@@ -112,26 +112,25 @@ const getReportData = async (client = supabase, now = new Date()) => {
   });
 
   const userDistribution = {
-    patient: 0,
-    doctor: 0,
-    assistant: 0,
-    admin: 0,
-    super_admin: 0,
-    ...countsToObject(usersByRole, 'role'),
+    ...analytics.user_distribution,
+    ...(usersByRoleError ? {} : countsToObject(usersByRole, 'role')),
   };
   const appointmentSummary = {
-    total: (appointmentsByStatus || []).reduce((sum, row) => sum + Number(row.count || 0), 0),
-    pending: 0,
-    confirmed: 0,
-    completed: 0,
-    cancelled: 0,
-    ...countsToObject(appointmentsByStatus, 'status', { pending_payment: 'pending' }),
+    ...analytics.appointment_summary,
+    total: appointmentsByStatusError
+      ? analytics.appointment_summary.total
+      : (appointmentsByStatus || []).reduce((sum, row) => sum + Number(row.count || 0), 0),
+    ...(appointmentsByStatusError
+      ? {}
+      : countsToObject(appointmentsByStatus, 'status', { pending_payment: 'pending' })),
   };
   const paymentCounts = {
-    verified: 0,
-    pending: 0,
-    rejected: 0,
-    ...countsToObject(paymentsByStatus, 'status', { pending_verification: 'pending' }),
+    verified: analytics.payment_analytics.verified,
+    pending: analytics.payment_analytics.pending,
+    rejected: analytics.payment_analytics.rejected,
+    ...(paymentsByStatusError
+      ? {}
+      : countsToObject(paymentsByStatus, 'status', { pending_verification: 'pending' })),
   };
 
   return {
@@ -146,7 +145,9 @@ const getReportData = async (client = supabase, now = new Date()) => {
     appointment_summary: appointmentSummary,
     payment_analytics: {
       ...analytics.payment_analytics,
-      total: (paymentsByStatus || []).reduce((sum, row) => sum + Number(row.count || 0), 0),
+      total: paymentsByStatusError
+        ? analytics.payment_analytics.total
+        : (paymentsByStatus || []).reduce((sum, row) => sum + Number(row.count || 0), 0),
       ...paymentCounts,
     },
   };
